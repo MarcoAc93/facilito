@@ -33,6 +33,7 @@ create = (req, res, next) => {
 		title: req.body.title,
 		description: req.body.description,
 		acceptsCreditCard: req.body.acceptsCreditCard,
+		address: req.body.address,
 		openHour: req.body.openHour,
 		closeHour: req.body.closeHour
 	})

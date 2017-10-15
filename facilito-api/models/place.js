@@ -17,6 +17,7 @@ let placeSchema = new mongoose.Schema({
 		type: Boolean,
 		default: false
 	},
+	address: String,
 	coverImage: String,
 	avatarImage: String,
 	openHour: Number,
@@ -47,7 +48,6 @@ placeSchema.statics.validateSlugCount = function(slug) {
 
 placeSchema.plugin(mongoosePaginate);
 
-// Arreglar el slug
 function generateSlugAndContinue(count, next) {
 	this.slug = slugify(this.title);
 
