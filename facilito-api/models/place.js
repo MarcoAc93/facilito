@@ -39,6 +39,7 @@ placeSchema.pre('save', function(next){
 
 placeSchema.statics.validateSlugCount = function(slug) {
 	return Place.count({slug:slug}).then(count => {
+		console.log(count);
 		if (count > 0) return false;
 		return true;
 	})
