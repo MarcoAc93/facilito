@@ -9,4 +9,6 @@ router.post('/create',
 	SesionsController.sendToken
 );
 
+router.get('/myPlaces', UsersController.myPlaces);
+
 module.exports = router;

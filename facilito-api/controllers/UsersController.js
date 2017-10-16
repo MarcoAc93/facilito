@@ -13,6 +13,17 @@ create = (req, res, next) => {
 	})
 }
 
+// ARREGLAR ESTE PEDO -.-
+myPlaces = (req, res) => {
+	console.log(req);
+	User.findOne({'_id':req.user._id}).then(user => {
+		user.places.then(places => {
+			res.send(places);
+		})
+	})
+}
+
 module.exports = {
-	create
+	create,
+	myPlaces
 }

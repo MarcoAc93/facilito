@@ -29,14 +29,9 @@ find = (req, res, next) => {
 }
 
 create = (req, res, next) => {
-	Place.create({
-		title: req.body.title,
-		description: req.body.description,
-		acceptsCreditCard: req.body.acceptsCreditCard,
-		address: req.body.address,
-		openHour: req.body.openHour,
-		closeHour: req.body.closeHour
-	})
+	let params = req.body;
+	params['_user'] = req.user.id;
+	Place.create(params)
 	.then(place => {
 		req.place = place;
 		next();
