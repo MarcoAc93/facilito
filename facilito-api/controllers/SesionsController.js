@@ -25,7 +25,6 @@ generateToken = (req, res, next) => {
 }
 
 sendToken = (req, res) => {
-	console.log(req.user);
 	if(req.user){
 		res.send({
 			user:req.user,
