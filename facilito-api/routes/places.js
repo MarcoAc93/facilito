@@ -1,5 +1,6 @@
 const express = require('express');
 const PlacesController = require('../controllers/PlacesController');
+const authenticateOwner = require('../middlewares/authenticateOwner');
 const router = express.Router();
 
 router.get('/getAll', PlacesController.index);

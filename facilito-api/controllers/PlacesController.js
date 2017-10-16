@@ -21,6 +21,7 @@ find = (req, res, next) => {
 	Place.findOne({slug:req.params.id})
 	.then(place => {
 		req.place = place;
+		req.mainObj = place;
 		next();
 	})
 	.catch(err => {
@@ -39,24 +40,6 @@ create = (req, res, next) => {
 		next(err)
 	});
 }
-
-// update = (req, res) => {
-// 	let attributes = ['title','description','acceptsCreditCard','openHour','closeHour'];
-// 	let attrParams = {};
-// 	attributes.forEach(attr => {
-// 		if(Object.prototype.hasOwnProperty.call(req.body, attr))
-// 			attrParams[attr] = req.body[attr]
-// 	})
-// 	req.place = Object.assign(req.place, attrParams);
-// 	req.place.save(attrParams,{new: true})
-// 	.then(place => {
-// 		res.send(place);
-// 	})
-// 	.catch(err => {
-// 		console.log(err);
-// 		res.send(err);
-// 	})
-// }
 
 update = (req, res) => {
 	let params = req.body;

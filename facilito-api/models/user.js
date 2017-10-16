@@ -15,7 +15,7 @@ let userSchema = new mongoose.Schema({
 	}
 });
 
-userSchema.virtual('places').get(() => {
+userSchema.virtual('places').get(function() {
 	return Place.find({'_user': this._id});
 });
 

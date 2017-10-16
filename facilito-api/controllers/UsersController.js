@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 
 create = (req, res, next) => {
 	let params = req.body;
@@ -15,12 +16,14 @@ create = (req, res, next) => {
 
 // ARREGLAR ESTE PEDO -.-
 myPlaces = (req, res) => {
-	console.log(req);
-	User.findOne({'_id':req.user._id}).then(user => {
+	let token = req.headers.authorization;
+	token = token.slice(7, token.length);
+	token = jwt.decode(token);
+	User.findOne({'_id':token.id}).then(user => {
 		user.places.then(places => {
 			res.send(places);
 		})
-	})
+	}).catch(err => res.send(err).status(422));
 }
 
 module.exports = {
