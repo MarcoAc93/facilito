@@ -17,10 +17,16 @@ let placeSchema = new mongoose.Schema({
 		type: Boolean,
 		default: false
 	},
+	address: String,
 	coverImage: String,
 	avatarImage: String,
 	openHour: Number,
-	closeHour: Number
+	closeHour: Number,
+	_user: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
+		required: true
+	}
 });
 
 placeSchema.methods.updateImage = function(path, imageType) {
@@ -34,12 +40,12 @@ placeSchema.methods.saveImageUrl = function(secure_url, imageType) {
 }
 
 placeSchema.pre('save', function(next){
-	generateSlugAndContinue.call(this,0, next)
+	if(this.slug) return next();
+	generateSlugAndContinue.call(this,0, next);
 });
 
 placeSchema.statics.validateSlugCount = function(slug) {
 	return Place.count({slug:slug}).then(count => {
-		console.log(count);
 		if (count > 0) return false;
 		return true;
 	})
@@ -47,7 +53,6 @@ placeSchema.statics.validateSlugCount = function(slug) {
 
 placeSchema.plugin(mongoosePaginate);
 
-// Arreglar el slug
 function generateSlugAndContinue(count, next) {
 	this.slug = slugify(this.title);
 
@@ -56,7 +61,7 @@ function generateSlugAndContinue(count, next) {
 
 	Place.validateSlugCount(this.slug).then(isValid => {
 		if(!isValid)
-			generateSlugAndContinue.call(this,count+1, next)
+			return generateSlugAndContinue.call(this,count+1, next);
 
 		next();
 	})

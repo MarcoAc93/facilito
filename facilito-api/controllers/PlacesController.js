@@ -18,7 +18,7 @@ show = (req, res) => {
 }
 
 find = (req, res, next) => {
-	Place.findById(req.params.id)
+	Place.findOne({slug:req.params.id})
 	.then(place => {
 		req.place = place;
 		next();
@@ -29,13 +29,9 @@ find = (req, res, next) => {
 }
 
 create = (req, res, next) => {
-	Place.create({
-		title: req.body.title,
-		description: req.body.description,
-		acceptsCreditCard: req.body.acceptsCreditCard,
-		openHour: req.body.openHour,
-		closeHour: req.body.closeHour
-	})
+	let params = req.body;
+	params['_user'] = req.user.id;
+	Place.create(params)
 	.then(place => {
 		req.place = place;
 		next();
@@ -44,21 +40,37 @@ create = (req, res, next) => {
 	});
 }
 
+// update = (req, res) => {
+// 	let attributes = ['title','description','acceptsCreditCard','openHour','closeHour'];
+// 	let attrParams = {};
+// 	attributes.forEach(attr => {
+// 		if(Object.prototype.hasOwnProperty.call(req.body, attr))
+// 			attrParams[attr] = req.body[attr]
+// 	})
+// 	req.place = Object.assign(req.place, attrParams);
+// 	req.place.save(attrParams,{new: true})
+// 	.then(place => {
+// 		res.send(place);
+// 	})
+// 	.catch(err => {
+// 		console.log(err);
+// 		res.send(err);
+// 	})
+// }
+
 update = (req, res) => {
-	let attributes = ['title','description','acceptsCreditCard','openHour','closeHour'];
-	let attrParams = {};
-	attributes.forEach(attr => {
-		if(Object.prototype.hasOwnProperty.call(req.body, attr))
-			attrParams[attr] = req.body[attr]
-	})
-	req.place = Object.assign(req.place, attrParams);
-	req.place.save({_id:req.params.id},attrParams,{new: true})
-	.then(place => {
-		res.send(place);
-	})
-	.catch(err => {
-		console.log(err);
-		res.send(err);
+	let params = req.body;
+	Place.findOne({slug:req.params.id})
+	.then(result => {
+		result.set(params);
+		result.save({new:true})
+		.then(updated => {
+			res.send(updated)
+		})
+		.catch(err => {
+			console.log(err);
+			res.send(err);
+		})
 	})
 }
 
