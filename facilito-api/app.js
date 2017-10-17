@@ -15,6 +15,7 @@ const sessions = require('./routes/sessions');
 const favorites = require('./routes/favorites');
 const visits = require('./routes/visits');
 const visitsPlaces = require('./routes/visitsPlaces');
+const applications = require('./routes/applications');
 
 db.connect();
 
@@ -37,6 +38,7 @@ app.use('/api/users', users);
 app.use('/api/sessions', sessions);
 app.use('/api/favorites', favorites);
 app.use('/api/visits', visits);
+app.use('/api/applications', applications);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

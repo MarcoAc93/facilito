@@ -9,8 +9,10 @@ create = (req, res) => {
   }).catch(error => res.status(422).send({error}));
 }
 
+// ARREGLAR EL FIND PARA ELIMINAR LUGAR FAVORITO
 find = (req, res, next) => {
   FavoritePlace.findById(req.params.id).then(fav => {
+    console.log(fav);
     req.mainObj = fav;
     req.favorite = fav;
     next();
@@ -27,7 +29,7 @@ getAll = (req, res) => {
 
 destroy = (req, res) => {
   req.favorite.remove().then(doc => {
-    res.send({});
+    res.send({message:'Removed', status:200});
   }).catch(error => {
     res.status(500).send({error});
   })
