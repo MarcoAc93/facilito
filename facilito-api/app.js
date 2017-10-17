@@ -13,6 +13,8 @@ const places = require('./routes/places');
 const users = require('./routes/users');
 const sessions = require('./routes/sessions');
 const favorites = require('./routes/favorites');
+const visits = require('./routes/visits');
+const visitsPlaces = require('./routes/visitsPlaces');
 
 db.connect();
 
@@ -27,12 +29,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(
 	jwtMiddleware({secret: secrets.jwtSecret})
 	.unless({path: ['/api/sessions/create', '/api/users/create', '/api/places/getAll']})
-)
+);
 
 app.use('/api/places', places);
+app.use('/api/places', visitsPlaces);
 app.use('/api/users', users);
 app.use('/api/sessions', sessions);
 app.use('/api/favorites', favorites);
+app.use('/api/visits', visits);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

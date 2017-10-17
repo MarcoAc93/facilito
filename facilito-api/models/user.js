@@ -20,7 +20,7 @@ userSchema.virtual('places').get(function() {
 	return Place.find({'_user': this._id});
 });
 
-userSchema.virtual('pavorites').get(function() {
+userSchema.virtual('favorites').get(function() {
 	return FavoritePlace.find({'_user':this._id},{'_place':true})
 	.then(favs => {
 		let placeIds = favs.map(fav => fav._place);

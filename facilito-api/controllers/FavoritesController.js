@@ -1,4 +1,5 @@
 const FavoritePlace = require('../models/favoritePlace');
+const User = require('../models/user');
 
 create = (req, res) => {
   let params = req.body;
@@ -16,6 +17,14 @@ find = (req, res, next) => {
   }).catch(next);
 }
 
+getAll = (req, res) => {
+  User.findOne({'_id':req.user.id}).then(user => {
+    user.favorites.then(places => {
+      res.send(places);
+    })
+  }).catch(err => res.status(422).send(err));
+}
+
 destroy = (req, res) => {
   req.favorite.remove().then(doc => {
     res.send({});
@@ -27,5 +36,6 @@ destroy = (req, res) => {
 module.exports = {
   create,
   find,
-  destroy
+  destroy,
+  getAll
 }
