@@ -20,10 +20,9 @@ find = (req, res, next) => {
 }
 
 getAll = (req, res) => {
-  User.findOne({'_id':req.user.id}).then(user => {
-    user.favorites.then(places => {
+  if (!req.fullUser) { return res.send({}) }
+    req.fullUser.favorites.then(places => {
       res.send(places);
-    })
   }).catch(err => res.status(422).send(err));
 }
 

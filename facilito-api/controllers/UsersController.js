@@ -14,7 +14,6 @@ create = (req, res, next) => {
 	})
 }
 
-// ARREGLAR ESTE PEDO -.-
 myPlaces = (req, res) => {
 	let token = req.headers.authorization;
 	token = token.slice(7, token.length);
