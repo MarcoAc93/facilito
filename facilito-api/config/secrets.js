@@ -1,8 +1,8 @@
 module.exports = {
 	cloudinary: {
-		api_key: '289121369369247',
-		cloud_name: 'marco-ac-93',
-		api_secret: '3aYvCITsg_2GwiiMMYzREtB5wxA'
+		api_key: '',
+		cloud_name: '',
+		api_secret: ''
 	},
 	jwtSecret: 'rasho_laserMamaL0n'
 }
