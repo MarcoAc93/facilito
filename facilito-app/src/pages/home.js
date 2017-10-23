@@ -7,6 +7,7 @@ import PlaceCard from '../components/places/place-card';
 import data from '../request/places';
 
 import { indigo400 } from 'material-ui/styles/colors';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 
 export default class Home extends Component {
@@ -14,8 +15,9 @@ export default class Home extends Component {
     super(props);
     this.hidePlace = this.hidePlace.bind(this);
     this.state = {
-      places: data.places
+      places: []
     }
+    setTimeout(() => this.setState({places: data.places}), 1500);
   }
 
   places(){
@@ -39,9 +41,9 @@ export default class Home extends Component {
         </div>
         <div style={{'backgroundColor':indigo400, 'padding':'50px', color:'white'}}>
           <h3 style={{'fontSize':'24px'}}>Sitios Populares</h3>
-          <div className="row">
+          <TransitionGroup className="row">
             {this.places()}
-          </div>
+          </TransitionGroup>
         </div>
       </section>
     );
