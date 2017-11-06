@@ -19,10 +19,6 @@ const visits = require('./routes/visits');
 const visitsPlaces = require('./routes/visitsPlaces');
 const applications = require('./routes/applications');
 
-app.get('/remove', function(req, res){
-	Application.remove({}).then(r=>res.send({message:'ok'}))
-})
-
 const findAppBySecret = require('./middlewares/findAppBySecret');
 const findAppByApplicationId = require('./middlewares/findAppByApplicationId');
 const authApp = require('./middlewares/authApp')();

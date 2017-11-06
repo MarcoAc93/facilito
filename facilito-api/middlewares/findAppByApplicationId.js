@@ -1,7 +1,6 @@
 const Application = require('../models/application');
 
 module.exports = function (req, res, next) {
-  console.log(req.body);
   if(req.application) return next();
   const applicationId = req.headers.application;
   if(!applicationId) return next();

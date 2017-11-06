@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Home from './pages/home'
-
+import MyAppBar from './components/navigation/app-bar';
 import './App.css';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+  }
   render() {
     return (
       <MuiThemeProvider>
-        <Home/>
+        <div>
+          <MyAppBar></MyAppBar>
+          {this.props.children}
+        </div>
       </MuiThemeProvider>
     );
   }
