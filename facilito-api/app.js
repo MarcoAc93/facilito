@@ -34,9 +34,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(findAppBySecret);
-app.use(findAppByApplicationId);
-app.use(authApp.unless({method:'OPTIONS'}));
+// app.use(findAppBySecret);
+// app.use(findAppByApplicationId);
+// app.use(authApp.unless({method:'OPTIONS'}));
 app.use(allowCORs.unless({path:'/public'}));
 
 app.use(

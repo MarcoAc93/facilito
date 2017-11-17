@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Link } from 'react-router-dom';
+
 import Title from '../components/title';
 
 
@@ -10,7 +12,9 @@ class Header extends Component{
         <div style={{'width':'80%', 'marging':'0 auto'}}>
           <div className='Header-main'>
             <Title/>
-            <RaisedButton label='Crear cuenta gratuita aquí' secondary/>
+            <Link to='/signup'>
+              <RaisedButton label='Crear cuenta gratuita aquí' secondary/>
+            </Link>
             <img className='Header-illustration' src={process.env.PUBLIC_URL+'/images/place.png'} height='300px' alt=""/>
           </div>
         </div>

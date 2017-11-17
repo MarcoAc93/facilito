@@ -14,6 +14,7 @@ class PlaceCard extends Component {
   render(){
     return(
       <CSSTransition
+        timeout={{enter:300, exit:300}}
         classNames='fade-scale'
         in={this.props.in}
         >

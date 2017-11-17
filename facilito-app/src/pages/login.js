@@ -6,8 +6,22 @@ import Container from '../components/container';
 
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import { login } from '../request/login';
 
 class Login extends Component {
+  constructor(props){
+    super(props);
+    this.requestAuth = this.requestAuth.bind(this);
+  }
+
+  requestAuth(){
+    const credentials = {
+      email: this.refs.emailField.getValue(),
+      password: this.refs.passwordField.getValue()
+    }
+    login(credentials).then(console.log).catch(console.log);
+  }
+
   render(){
     return(
       <div className='row middle-xs'>
@@ -15,11 +29,11 @@ class Login extends Component {
           <Container>
             <div style={{'textAlign':'left'}}>
               <Title />
-              <TextField floatingLabelText='Correo Electronico' type='email' className='textfield'/>
-              <TextField floatingLabelText='Contraseña' type='password' className='textfield'/>
+              <TextField floatingLabelText='Correo Electronico' type='email' className='textfield' ref='emailField'/>
+              <TextField floatingLabelText='Contraseña' type='password' className='textfield' ref='passwordField'/>
               <div className='Login-actions'>
                 <Link to='/signup' style={{'marginRight':'1em'}}>Crear nueva cuenta</Link>
-                <RaisedButton label='Ingresar' secondary={true}/>
+                <RaisedButton label='Ingresar' secondary={true} onClick={this.requestAuth}/>
               </div>
             </div>
           </Container>

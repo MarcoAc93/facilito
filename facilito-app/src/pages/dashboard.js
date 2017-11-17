@@ -6,14 +6,21 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import Container from '../components/container';
 import PlaceHorizontal from '../components/places/place-horizontal';
 
-import data from '../request/places';
+import {getPlaces} from '../request/places';
 
 class Dashboard extends Component{
   constructor(props){
     super(props);
     this.state = {
-      places: data.places
+      places: []
     }
+    this.loadPlaces();
+  }
+
+  loadPlaces() {
+    getPlaces().then(jsonR => {
+      this.setState({places:jsonR.docs});
+    })
   }
 
   places(){

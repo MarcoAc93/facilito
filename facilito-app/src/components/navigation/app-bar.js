@@ -8,6 +8,7 @@ class MyAppBar extends Component {
       <AppBar
         title='Places'
         style={{'backgroundColor': indigo600}}
+        onTitleTouchTap={this.props.goHome}
         showMenuIconButton={false}/>
     );
   }

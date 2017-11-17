@@ -106,3 +106,51 @@
   background-size: cover;
   background-position: center;
 }
+
+.PlaceH-avatar img{
+  max-width: 80%;
+}
+
+.PlaceH-avatar{
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  overflow: hidden;
+}
+
+.Place-cover{
+  height: 350px;
+  background-size: cover;
+  background-position: cover;
+}
+
+.Place-card{
+  text-align: left;
+  padding: 30px;
+}
+
+.Place-container{
+
+}
+
+.left-out-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.left-out-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.left-out-exit {
+  opacity: 1;
+  transform: translateX(100%);
+}
+
+.left-out-exit-active {
+  opacity: 0;
+  transform: translateX(0);
+}
