@@ -1,7 +1,6 @@
 import React,{ Component } from 'react';
 import Container from '../components/container'
 import { Card } from 'material-ui/Card';
-import { withRouter } from 'react-router-dom';
 import { getPlace } from '../request/places';
 import '../App.css';
 
