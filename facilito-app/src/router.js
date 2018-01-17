@@ -7,6 +7,7 @@ import Signup from './pages/signup';
 import Dashboard from './pages/dashboard';
 import Place from './pages/place';
 import App from './App';
+import { connect } from 'react-redux';
 
 const userSignedIn = false;
 

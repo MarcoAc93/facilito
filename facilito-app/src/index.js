@@ -9,7 +9,9 @@ import { Provider } from 'react-redux';
 const store = configureStore();
 
 ReactDOM.render(
-  <Provider store={store}><Router/></Provider>, 
+  <Provider store={ store }>
+    <Router/>
+  </Provider>, 
   document.getElementById('root')
 );
 registerServiceWorker();

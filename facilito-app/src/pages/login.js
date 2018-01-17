@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Title from '../components/title';
 import Container from '../components/container';
@@ -46,4 +47,10 @@ class Login extends Component {
   }
 }
 
-export default Login;
+function mapStateToProps(state, ownProps){
+  return{
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(Login);

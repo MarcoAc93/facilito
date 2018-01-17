@@ -1,10 +1,12 @@
 import React,{ Component } from 'react';
+import { connect } from 'react-redux';
+
 import Container from '../components/container'
 import { Card } from 'material-ui/Card';
 import { getPlace } from '../request/places';
 import '../App.css';
 
-export default class Place extends Component {
+class Place extends Component {
   constructor(props){
     super(props);
     const slug = props.match.params.slug;
@@ -47,3 +49,11 @@ export default class Place extends Component {
     );
   }
 }
+
+function mapStateToProps(state, ownProp) {
+  return {
+    places: state.places
+  }
+}
+
+export default connect(mapStateToProps)(Place);
